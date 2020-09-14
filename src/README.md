@@ -262,3 +262,63 @@ config	     node_modules   test
 ~ $ exit
 logout
 ```
+
+# Testing | CICD ( using CircleCI ) :
+
+- https://github.com/rama5789/circleci-demo-javascript-express
+- https://github.com/rama5789/nest-starter-testing
+- https://github.com/rama5789/nodejs-circleci
+
+### Vanilla config.yml file :
+
+```yml
+version: 2.1
+# Job Definitions
+jobs:
+  # Job 1
+  run_tests:
+    # Job Executor - where job will be executed. "VM" is another type of Executor.
+    docker:
+      - image: circleci/node:12.18.2
+    # Steps to be performed inside Docker image
+    steps:
+      # Checkout from Git
+      - checkout
+      - run:
+          name: Install npm dependencies
+          command: npm install
+      # Mocha Test Cases
+      - run:
+          name: Run Unit Tests
+          command: ./node_modules/mocha/bin/mocha test/ --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+# Job Pipeline
+workflows:
+  build_test:
+    jobs:
+      - run_tests
+```
+
+### config.yml file ( using Orbs ) :
+
+```yml
+version: 2.1
+orbs:
+  node: circleci/node@3.0.0
+jobs:
+  run_tests:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test
+workflows:
+  build_test:
+    jobs:
+      - run_tests
+```
