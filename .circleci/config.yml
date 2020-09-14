@@ -10,8 +10,11 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          command: yarn test
           name: Run YARN tests
+          command: yarn test:cov
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
 workflows:
   build_test:
     jobs:
