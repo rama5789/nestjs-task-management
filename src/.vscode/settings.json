@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "taskmanagement",
+            "driver": "PostgreSQL",
+            "name": "postgres_docker_local",
+            "password": "mysecretpassword",
+            "port": 5432,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "postgres"
+        }
+    ]
+}

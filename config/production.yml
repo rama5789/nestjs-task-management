@@ -1,0 +1,16 @@
+server:
+  # aws s3
+  # origin: 'http://nestjs-task-management-frontend.s3-website-eu-west-1.amazonaws.com'
+
+  # firebase hosting
+  origin:
+    [
+      'https://nestjs-task-management-app.web.app',
+      'https://nestjs-task-management-app.firebaseapp.com',
+    ]
+
+db:
+  synchronize: false
+
+swagger:
+  activateUI: false
